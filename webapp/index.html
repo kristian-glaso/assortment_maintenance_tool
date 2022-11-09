@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Assortment Maintenance Tool</title>
+    <style>
+        html, body, body > div, #container, #container-uiarea {
+            height: 100%;
+        }
+    </style>
+    <script
+        id="sap-ui-bootstrap"
+        src="resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_horizon"
+        data-sap-ui-resourceroots='{
+            "com.amt.assortmentmaintenancetool": "./"
+        }'
+        data-sap-ui-compatVersion="edge"
+        data-sap-ui-async="true"
+        data-sap-ui-frameOptions="trusted"
+    ></script>
+    <script id="locate-reuse-libs" src="./utils/locate-reuse-libs.js"
+        data-sap-ui-manifest-uri="./manifest.json"
+        data-sap-ui-componentName="com.amt.assortmentmaintenancetool">
+    </script> 
+<script type="text/javascript" src="/utils/zListingTable.js"></script>
+<script type="text/javascript" src="/utils/zStoresTable.js"></script>
+<script type="text/javascript" src="/utils/zfilter.js"></script>
+<script type="text/javascript" src="/utils/zpagination.js"></script>
+
+   
+</head>
+<body class="sapUiBody sapUiSizeCompact" id="content">
+    <div
+        data-sap-ui-component
+        data-name="com.amt.assortmentmaintenancetool"
+        data-id="container"
+        data-settings='{"id" : "com.amt.assortmentmaintenancetool"}'
+        data-handle-validation="true"
+    ></div>
+</body>
+</html>
