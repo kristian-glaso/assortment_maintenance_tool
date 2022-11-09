@@ -29,17 +29,44 @@ sap.ui.define([
 
         return Controller.extend("com.amt.assortmentmaintenancetool.controller.MainView", {
             onInit: function () {
-                createListingTable();
-                createStoresTable();
+                //createListingTable();
+                //createStoresTable();
                 renderPagination();
 
             },
             pressAssortmentItem: function (event) {
                 MessageToast.show(event.getSource().getBindingContext().getProperty().Asort + " was pressed");
                 let asort = event.getSource().getBindingContext().getProperty().Asort;
-                
+
+
+
+
                 readListing(event.getSource().getBindingContext().getProperty());
-                readStores(asort);
+                //readStores(asort);
+
+
+
+                //TESTING
+                let oTable = sap.ui.getCore().getElementById("container-com.amt.assortmentmaintenancetool---MainView--StoresTable");
+                if (!oTable) {
+                    return;
+                }
+
+                //todo - combobox
+
+                // Multiple Filters using OR
+                var binding = oTable.getBinding("items");
+
+                var filter = new sap.ui.model.Filter({
+                    filters: [
+                        new sap.ui.model.Filter("Asort", "Equals", asort),
+                        //new sap.ui.model.Filter("Name1", "Contains", freeText)
+                    ],
+                    and: false
+                })
+                binding.filter([filter]);
+
+
 
             },
 
