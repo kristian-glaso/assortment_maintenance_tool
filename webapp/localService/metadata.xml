@@ -33,11 +33,15 @@
                 <Key>
                     <PropertyRef Name="Asort"/>
                 </Key>
-                <Property Name="Asort" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Sortiment" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
-                <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Betegnelse" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
-                <Property Name="Assordimval1" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Størrelse" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="ArticlesCount" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Artikler" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="StoresCount" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Butikker" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Asort" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Sortiment" sap:creatable="false"/>
+                <Property Name="Assordimval1Vtext" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Betegnelse" sap:creatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Locnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Debitor" sap:creatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MessageType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Indikator på 1 posisjon" sap:creatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Betegnelse" sap:creatable="false"/>
+                <Property Name="Assordimval1" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Størrelse" sap:creatable="false"/>
+                <Property Name="ArticlesCount" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Artikler" sap:creatable="false" sap:sortable="false"/>
+                <Property Name="StoresCount" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Butikker" sap:creatable="false" sap:sortable="false"/>
             </EntityType>
             <EntityType Name="assortmentListing" sap:content-version="1">
                 <Key>
@@ -47,42 +51,58 @@
                     <PropertyRef Name="Datbi"/>
                     <PropertyRef Name="Lfdnr"/>
                 </Key>
-                <Property Name="Filia" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Sortiment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Artnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Vrkme" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Salgs-KE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
-                <Property Name="Datbi" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Gyldig til" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Lfdnr" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Løpenummer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Betegnelse" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Maktx" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Beskrivelse" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Matkl" Type="Edm.String" Nullable="false" MaxLength="9" sap:unicode="false" sap:label="Varegruppe" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Wgbez60" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Varegrp.bet. 2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Datab" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Gyldig fra" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Mstae" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="F.uavh. mat.st." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Filia" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Sortiment" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Artnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Vrkme" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Salgs-KE" sap:creatable="false" sap:updatable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Datbi" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Gyldig til" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Lfdnr" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Løpenummer" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Betegnelse" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Maktx" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Beskrivelse" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Matkl" Type="Edm.String" Nullable="false" MaxLength="9" sap:unicode="false" sap:label="Varegruppe" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Wgbez60" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Varegrp.bet. 2" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Datab" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Gyldig fra" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Mstae" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="F.uavh. mat.st." sap:creatable="false" sap:updatable="false"/>
             </EntityType>
             <EntityType Name="stores" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="Asort"/>
                     <PropertyRef Name="Lfdnr"/>
                 </Key>
-                <Property Name="Asort" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Sortiment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Lfdnr" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Løpenummer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Locnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Kundenr. fabr." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Asort" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Sortiment" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Lfdnr" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Løpenummer" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Locnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Kundenr. fabr." sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Debitor" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Vkorg" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Salgsorg." sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Vtweg" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Distr.kanal" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Spart" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Divisjon" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Sonut" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Type sort.bruk." sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Datab" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Gyldig fra" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Datbi" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Gyldig til" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Rangf" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Rangf. STilordn" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Ligrd" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Basisregel inkl" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Ernam" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Opprettet av" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Erzet" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Klokkeslett" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Aenam" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Endret av" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Aedat" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Endret den" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Aezet" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Endret kl." sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Fabrikk" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Navn" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="kna1" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Kunnr"/>
+                </Key>
                 <Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Debitor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Vkorg" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Salgsorg." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Vtweg" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Distr.kanal" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Spart" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Divisjon" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Sonut" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Type sort.bruk." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Datab" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Gyldig fra" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Datbi" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Gyldig til" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Rangf" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Rangf. STilordn" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Ligrd" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Basisregel inkl" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Ernam" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Opprettet av" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Erzet" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Klokkeslett" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Aenam" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Endret av" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Aedat" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Endret den" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Aezet" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Endret kl." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Fabrikk" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Navn" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="wrfst_dimvalt" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Assordim"/>
+                    <PropertyRef Name="Assordimval"/>
+                </Key>
+                <Property Name="Assordim" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Sortimentsdimensjon" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Assordimval" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Dimensjonsverdi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vtext" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Betegnelse" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
             <EntityContainer Name="ZUI5_ASSORTMENT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
                 <EntitySet Name="SubscriptionCollection" EntityType="ZUI5_ASSORTMENT_SRV.Subscription" sap:content-version="1"/>
@@ -90,6 +110,8 @@
                 <EntitySet Name="assortmentSet" EntityType="ZUI5_ASSORTMENT_SRV.assortment" sap:searchable="true" sap:content-version="1"/>
                 <EntitySet Name="assortmentListingSet" EntityType="ZUI5_ASSORTMENT_SRV.assortmentListing" sap:searchable="true" sap:requires-filter="true" sap:content-version="1"/>
                 <EntitySet Name="storesSet" EntityType="ZUI5_ASSORTMENT_SRV.stores" sap:searchable="true" sap:requires-filter="true" sap:content-version="1"/>
+                <EntitySet Name="kna1Set" EntityType="ZUI5_ASSORTMENT_SRV.kna1" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="wrfst_dimvaltSet" EntityType="ZUI5_ASSORTMENT_SRV.wrfst_dimvalt" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
             </EntityContainer>
             <atom:link rel="self" href="http://c18oslssa20.c18.no.myatea.net:8000/sap/opu/odata/sap/ZUI5_ASSORTMENT_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
             <atom:link rel="latest-version" href="http://c18oslssa20.c18.no.myatea.net:8000/sap/opu/odata/sap/ZUI5_ASSORTMENT_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>

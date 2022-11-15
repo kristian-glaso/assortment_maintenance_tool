@@ -25,6 +25,21 @@
                     "localUri": "localService/metadata.xml"
                 }
             }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "com-amt-assortmentmaintenancetool-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "AMT",
+                    "action": "open",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": ""
+                }
+            }
         }
     },
     "sap.ui": {
@@ -127,5 +142,9 @@
             "async": true,
             "id": "App"
         }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "com-amt-assortmentmaintenancetool"
     }
 }

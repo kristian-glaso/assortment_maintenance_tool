@@ -1,22 +1,23 @@
-//Define pagination
-globalPagination = {}
 
 //Define models 
-modelListing = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/SAP/ZUI5_ASSORTMENT_SRV", {
+modelAssortment = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/SAP/ZUI5_ASSORTMENT_SRV", {
     json: true,
     useBatch: false,
 })
 
-modelStores = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/SAP/ZUI5_ASSORTMENT_SRV", {
+
+modelMasterData = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/SAP/ZUI5_ASSORTMENT_SRV", {
     json: true,
     useBatch: false,
 })
+
 
 
 
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast"
+    "sap/m/MessageToast",
+    "sap/m/MessageBox"
 
 ],
     /**
@@ -31,7 +32,10 @@ sap.ui.define([
             onInit: function () {
                 //createListingTable();
                 //createStoresTable();
-                renderPagination();
+                //renderPagination();
+                readMasterData();
+
+                getComponent("SettingsdialogAssortment").open()
 
             },
             pressAssortmentItem: function (event) {
@@ -39,36 +43,52 @@ sap.ui.define([
                 let asort = event.getSource().getBindingContext().getProperty().Asort;
 
 
+                //clean up model (clear stores and listing)                
+                let odata = sap.ui.getCore().getElementById("container-com.amt.assortmentmaintenancetool---MainView--StoresTable").getModel().oData;
+                console.log("Size of model: " + Object.keys(odata).length)
+                Object.keys(odata).forEach(function (object) {
+                    if (object.includes("assortmentListingSet") || object.includes("storesSet")) {
+                        //delete
+                        delete odata[object];
+                    }
+
+                });
+                console.log("Size of model: " + Object.keys(odata).length)
+                filterListing();
+                filterStores();
+            },
+            assortmentSelectionChange: function () {
+
+                getComponent("buttonDeleteAssortment").setEnabled(false);
+
+                //clean up model (clear stores and listing)                
+                let odata = sap.ui.getCore().getElementById("container-com.amt.assortmentmaintenancetool---MainView--StoresTable").getModel().oData;
+                console.log("Size of model: " + Object.keys(odata).length)
+                Object.keys(odata).forEach(function (object) {
+                    if (object.includes("assortmentListingSet") || object.includes("storesSet")) {
+                        //delete
+                        delete odata[object];
+                    }
+
+                });
+                console.log("Size of model: " + Object.keys(odata).length)
 
 
-                readListing(event.getSource().getBindingContext().getProperty());
-                //readStores(asort);
+                //Set selected assortments in global data
+                let selectedItems = sap.ui.getCore().getElementById("container-com.amt.assortmentmaintenancetool---MainView--AssortmentTable").getSelectedItems();
 
-
-
-                //TESTING
-                let oTable = sap.ui.getCore().getElementById("container-com.amt.assortmentmaintenancetool---MainView--StoresTable");
-                if (!oTable) {
-                    return;
+                if (getComponent("AssortmentTable").getSelectedItems().length > 0) {
+                    getComponent("buttonDeleteAssortment").setEnabled(true);
                 }
 
-                //todo - combobox
-
-                // Multiple Filters using OR
-                var binding = oTable.getBinding("items");
-
-                var filter = new sap.ui.model.Filter({
-                    filters: [
-                        new sap.ui.model.Filter("Asort", "Equals", asort),
-                        //new sap.ui.model.Filter("Name1", "Contains", freeText)
-                    ],
-                    and: false
-                })
-                binding.filter([filter]);
 
 
+                //Read data for depended tables
+                filterListing();
+                filterStores();
 
-            },
+
+            }
 
         });
 
@@ -76,14 +96,6 @@ sap.ui.define([
     });
 
 
-function refreshAssortment(params) {
-
-    var table = sap.ui.getCore().getElementById("container-com.amt.assortmentmaintenancetool---MainView--AssortmentTable")
-    if (table) {
-        table.getModel().refresh()
-    }
-
-}
 
 
 
