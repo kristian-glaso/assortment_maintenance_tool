@@ -1,23 +1,25 @@
 # yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
-
-specVersion: "2.5"
+specVersion: '2.5'
 metadata:
   name: com.amt.assortmentmaintenancetool
 type: application
+resources:
+  configuration:
+    propertiesFileSourceEncoding: UTF-8
 builder:
   resources:
     excludes:
-      - /test/**
-      - /localService/**
+      - "/test/**"
+      - "/localService/**"
   customTasks:
-    - name: deploy-to-abap
-      afterTask: generateCachebusterInfo
-      configuration:
-        target:
-          destination: Odata_ERP_DEV_ARK
-          url: http://C18OSLSSA20.c18.no.myatea.net:8000
-        app:
-          name: ZAMT
-          description: AMT
-          package: ZASSORTMENT
-          transport: ARUK913699
+  - name: webide-extension-task-updateManifestJson
+    beforeTask: generateManifestBundle
+    configuration:
+      appFolder: webapp
+      destDir: dist
+  - name: ui5-task-zipper
+    afterTask: generateCachebusterInfo
+    configuration:
+      archiveName: comamtassortmentmaintenancetool
+      additionalFiles:
+      - xs-app.json

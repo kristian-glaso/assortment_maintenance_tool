@@ -5,57 +5,72 @@
                 <l:PaneContainer resize=".onRootContainerResize">
                     <l:SplitPane requiredParentWidth="400" id="default">
                         <l:layoutData>
-                            <l:SplitterLayoutData size="{sizes>/pane1}"/>
+                            <l:SplitterLayoutData size="{sizes>/pane1}" />
                         </l:layoutData>
                         <Page title="Sortimenter">
-                            <Table id="AssortmentTable" inset="false" fixedLayout="false" sticky="HeaderToolbar,ColumnHeaders" items="{path:'/assortmentSet',sorter:[{path:'Asort',descending:false}]}" includeItemInSelection="true" mode="MultiSelect" selectionChange="assortmentSelectionChange" rememberSelections="false" tooltip="Opprett et nytt sortiment">
+                            <Table
+                                id="AssortmentTable"
+                                inset="false"
+                                fixedLayout="false"
+                                sticky="HeaderToolbar,ColumnHeaders"
+                                items="{path:'/assortmentSet',sorter:[{path:'Asort',descending:false}]}"
+                                includeItemInSelection="true"
+                                mode="MultiSelect"
+                                selectionChange="assortmentSelectionChange"
+                                rememberSelections="false"
+                                tooltip="Opprett et nytt sortiment"
+                            >
                                 <infoToolbar>
                                     <OverflowToolbar id="_IDGenOverflowToolbar2">
-                                        <MultiComboBox id="comboBoxKna1" selectionChange="filterAssortment" width="12rem" placeholder="Filter butikk">
-                                            <items/>
+                                        <MultiComboBox id="comboBoxKna1" selectionChange="filterAssortment" width="12rem" placeholder="Filter butikk" items="{path:'/kna1Set'}">
+                                            <items>
+                                                <core:Item id="item28" key="{Kunnr}" text="{Kunnr} {Name1}" />
+                                            </items>
                                         </MultiComboBox>
-                                        <MultiComboBox id="comboBoxAssordimval1" selectionChange="filterAssortment" width="12rem" placeholder="Filter størrelse">
-                                            <items/>
+                                        <MultiComboBox id="comboBoxAssordimval1" selectionChange="filterAssortment" width="12rem" placeholder="Filter størrelse" items="{path:'/wrfst_dimvaltSet', filters: [{ path: 'Assordim', operator: 'EQ', value1: '1' }]}">
+                                            <items>
+                                                <core:Item id="item22" key="{Assordimval}" text="{Assordimval} {Vtext}" />
+                                            </items>
                                         </MultiComboBox>
                                     </OverflowToolbar>
                                 </infoToolbar>
 
                                 <columns>
                                     <Column id="_IDGenColumn1">
-                                        <Button text="Sortiment" type="Transparent" press="sortTable($event,'Asort')"/>
+                                        <Button text="Sortiment" type="Transparent" press="sortTable($event,'Asort')" />
                                     </Column>
                                     <Column id="_IDGenColumn2" minScreenWidth="Tablet" demandPopin="true">
-                                        <Button text="Beskrivelse" type="Transparent" press="sortTable($event,'Name1')"/>
+                                        <Button text="Beskrivelse" type="Transparent" press="sortTable($event,'Name1')" />
                                     </Column>
                                     <Column id="_IDGenColumn3" minScreenWidth="Tablet" demandPopin="true">
-                                        <Button text="Størrelse" type="Transparent" press="sortTable($event,'Assordimval1')"/>
+                                        <Button text="Størrelse" type="Transparent" press="sortTable($event,'Assordimval1')" />
                                     </Column>
                                     <Column id="_IDGenColumn4" minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-                                        <Text id="_IDGenText4" text="Ant. artikler"/>
+                                        <Text id="_IDGenText4" text="Ant. artikler" />
                                     </Column>
                                     <Column id="_IDGenColumn5" demandPopin="true" hAlign="Center">
-                                        <Text id="_IDGenText5" text="Ant. butikker"/>
+                                        <Text id="_IDGenText5" text="Ant. butikker" />
                                     </Column>
                                 </columns>
                                 <items>
                                     <ColumnListItem id="_IDGenColumnListItem1" vAlign="Middle" press=".pressAssortmentItem($event)" type="Detail">
                                         <cells>
-                                            <Text id="_IDGenText8" text="{Asort}"/>
-                                            <Text id="_IDGenText6" text="{Name1}"/>
-                                            <Text id="_IDGenText7" text="{Assordimval1} {Assordimval1Vtext}" wrapping="false"/>
-                                            <Text id="_IDGenText9" text="{ArticlesCount}"/>
-                                            <Text id="_IDGenText10" text="{StoresCount}"/>
+                                            <Text id="_IDGenText8" text="{Asort}" />
+                                            <Text id="_IDGenText6" text="{Name1}" />
+                                            <Text id="_IDGenText7" text="{Assordimval1} {Assordimval1Vtext}" wrapping="false" />
+                                            <Text id="_IDGenText9" text="{ArticlesCount}" />
+                                            <Text id="_IDGenText10" text="{StoresCount}" />
                                         </cells>
                                     </ColumnListItem>
                                 </items>
                                 <headerToolbar>
                                     <OverflowToolbar width="100%" id="toolbar1_1668166912010">
                                         <content>
-                                            <Button id="ButtonRefreshAssortments" icon="sap-icon://refresh" tooltip="Oppfrisk sortiments-listen (last inn endringer fra SAP)" press="refreshAssortment"/>
-                                            <SearchField xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" placeholder="Søk på sortiment" id="searchFieldAssortment" width="12rem" change="filterAssortment"/>
-                                            <ToolbarSpacer id="spacer1"/>
-                                            <Button text="Slett" id="buttonDeleteAssortment" type="Reject" icon="sap-icon://delete" tooltip="Slett valgte sortimenter" enabled="false" press="deleteAssortments"/>
-                                            <Button text="Opprett" id="buttonCreateAssortment" icon="sap-icon://create" type="Emphasized" press="openDialog('dialogCreateAssortment')" tooltip="Opprett et nytt sortiment"/>
+                                            <Button id="ButtonRefreshAssortments" icon="sap-icon://refresh" tooltip="Oppfrisk sortiments-listen (last inn endringer fra SAP)" press="refreshAssortment" />
+                                            <SearchField xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" placeholder="Søk på sortiment" id="searchFieldAssortment" width="12rem" change="filterAssortment" />
+                                            <ToolbarSpacer id="spacer1" />
+                                            <Button text="Slett" id="buttonDeleteAssortment" type="Reject" icon="sap-icon://delete" tooltip="Slett valgte sortimenter" enabled="false" press="deleteAssortments" />
+                                            <Button text="Opprett" id="buttonCreateAssortment" icon="sap-icon://create" type="Emphasized" press="openDialog('dialogCreateAssortment')" tooltip="Opprett et nytt sortiment" />
                                         </content>
                                     </OverflowToolbar>
                                 </headerToolbar>
@@ -65,13 +80,13 @@
                     <l:PaneContainer orientation="Vertical" resize=".onInnerContainerResize">
                         <l:SplitPane requiredParentWidth="600">
                             <l:layoutData>
-                                <l:SplitterLayoutData size="{sizes>/pane2}"/>
+                                <l:SplitterLayoutData size="{sizes>/pane2}" />
                             </l:layoutData>
                             <Page title="Listing av artikler">
                                 <footer>
                                     <OverflowToolbar width="100%" id="toolbar2">
                                         <content>
-                                            <HBox width="100%" id="HboxListingPagination"/>
+                                            <HBox width="100%" id="HboxListingPagination" />
                                         </content>
                                     </OverflowToolbar>
                                 </footer>
@@ -80,58 +95,58 @@
                                         <items>
                                             <ColumnListItem type="Active" id="item5_1668066639574">
                                                 <cells>
-                                                    <Text id="text6_1668066639573" text="{Filia}" wrapping="false"/>
-                                                    <Text id="text7_1668066639573" text="{Artnr}" wrapping="false"/>
-                                                    <Text text="{Maktx}" id="text8_1668066639574" wrapping="false"/>
-                                                    <Text xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" text="{path : 'Datab', type : 'sap.ui.model.type.Date'}" wrapping="false"/>
-                                                    <Text xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" text="{path : 'Datbi', type : 'sap.ui.model.type.Date'}" wrapping="false"/>
+                                                    <Text id="text6_1668066639573" text="{Filia}" wrapping="false" />
+                                                    <Text id="text7_1668066639573" text="{Artnr}" wrapping="false" />
+                                                    <Text text="{Maktx}" id="text8_1668066639574" wrapping="false" />
+                                                    <Text xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" text="{path : 'Datab', type : 'sap.ui.model.type.Date'}" wrapping="false" />
+                                                    <Text xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" text="{path : 'Datbi', type : 'sap.ui.model.type.Date'}" wrapping="false" />
 
-                                                    <Text xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" text="{Matkl} {Wgbez60}" id="text8_1668066639574_copy4"/>
-                                                    <Text xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" text="{Mstae}" id="text8_1668066639574_copy5" wrapping="false"/>
+                                                    <Text xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" text="{Matkl} {Wgbez60}" id="text8_1668066639574_copy4" />
+                                                    <Text xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" text="{Mstae}" id="text8_1668066639574_copy5" wrapping="false" />
                                                 </cells>
                                             </ColumnListItem>
                                         </items>
                                         <columns>
                                             <Column id="column0_1668066639574">
                                                 <header>
-                                                    <Button text="Sortiment" type="Transparent" press="sortTable($event,'Filia')"/>
+                                                    <Button text="Sortiment" type="Transparent" press="sortTable($event,'Filia')" />
                                                 </header>
                                             </Column>
                                             <Column id="column1_1668066639575">
                                                 <header>
-                                                    <Button text="Artikkel" type="Transparent" press="sortTable($event,'Artnr')"/>
+                                                    <Button text="Artikkel" type="Transparent" press="sortTable($event,'Artnr')" />
                                                 </header>
                                             </Column>
                                             <Column id="column2_1668066639575">
                                                 <header>
-                                                    <Button text="Tekst" type="Transparent" press="sortTable($event,'Maktx')"/>
+                                                    <Button text="Tekst" type="Transparent" press="sortTable($event,'Maktx')" />
                                                 </header>
                                             </Column>
                                             <Column xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" id="column2_1668066639575_copy2">
                                                 <header>
-                                                    <Button text="Fra-dato" type="Transparent" press="sortTable($event,'Datab')"/>
+                                                    <Button text="Fra-dato" type="Transparent" press="sortTable($event,'Datab')" />
                                                 </header>
                                             </Column>
                                             <Column xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" id="column2_1668066639575_copy3">
                                                 <header>
-                                                    <Button text="Til-dato" type="Transparent" press="sortTable($event,'Datbi')"/>
+                                                    <Button text="Til-dato" type="Transparent" press="sortTable($event,'Datbi')" />
                                                 </header>
                                             </Column>
                                             <Column xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" id="column2_1668066639575_copy5">
                                                 <header>
-                                                    <Button text="CGM" type="Transparent" press="sortTable($event,'Wgbez60')"/>
+                                                    <Button text="CGM" type="Transparent" press="sortTable($event,'Wgbez60')" />
                                                 </header>
                                             </Column>
                                             <Column xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" id="column2_1668066639575_copy4">
                                                 <header>
-                                                    <Button text="Artikkelstatus" type="Transparent" press="sortTable($event,'Mstae')"/>
+                                                    <Button text="Artikkelstatus" type="Transparent" press="sortTable($event,'Mstae')" />
                                                 </header>
                                             </Column>
                                         </columns>
                                         <headerToolbar>
                                             <OverflowToolbar width="100%" id="toolbar1">
                                                 <content>
-                                                    <Input value="Value" id="input0" placeholder="Legg til artikkel" showValueHelp="true" valueHelpOnly="true" autocomplete="false" width="12rem"/>
+                                                    <Input value="Value" id="input0" placeholder="Legg til artikkel" showValueHelp="true" valueHelpOnly="true" autocomplete="false" width="12rem" />
                                                 </content>
                                             </OverflowToolbar>
                                         </headerToolbar>
@@ -141,21 +156,21 @@
                         </l:SplitPane>
                         <l:SplitPane requiredParentWidth="600">
                             <l:layoutData>
-                                <l:SplitterLayoutData size="{sizes>/pane3}"/>
+                                <l:SplitterLayoutData size="{sizes>/pane3}" />
                             </l:layoutData>
                             <Page title="Butikker">
                                 <footer>
                                     <OverflowToolbar id="otb3">
-                                        <Label text="Buttons:"/>
-                                        <ToolbarSpacer/>
-                                        <Button text="New" type="Transparent"/>
-                                        <Button text="Open" type="Transparent"/>
-                                        <Button text="Save" type="Transparent"/>
-                                        <Button text="Save as" type="Transparent"/>
-                                        <Button text="Cut" type="Transparent"/>
-                                        <Button text="Copy" type="Transparent"/>
-                                        <Button text="Paste" type="Transparent"/>
-                                        <Button text="Undo" type="Transparent"/>
+                                        <Label text="Buttons:" />
+                                        <ToolbarSpacer />
+                                        <Button text="New" type="Transparent" />
+                                        <Button text="Open" type="Transparent" />
+                                        <Button text="Save" type="Transparent" />
+                                        <Button text="Save as" type="Transparent" />
+                                        <Button text="Cut" type="Transparent" />
+                                        <Button text="Copy" type="Transparent" />
+                                        <Button text="Paste" type="Transparent" />
+                                        <Button text="Undo" type="Transparent" />
                                     </OverflowToolbar>
                                 </footer>
                                 <content>
@@ -163,44 +178,44 @@
                                         <items>
                                             <ColumnListItem type="Active" id="item5">
                                                 <cells>
-                                                    <Text text="{Asort}" id="text6"/>
-                                                    <Text text="{Lfdnr}" id="text7"/>
-                                                    <Text text="{Locnr}" id="text8"/>
-                                                    <Text xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" id="text8_copy3" text="{Name1}"/>
-                                                    <Text xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" text="{path : 'Datab', type : 'sap.ui.model.type.Date'}" wrapping="false"/>
-                                                    <Text xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" text="{path : 'Datbi', type : 'sap.ui.model.type.Date'}" wrapping="false"/>
+                                                    <Text text="{Asort}" id="text6" />
+                                                    <Text text="{Lfdnr}" id="text7" />
+                                                    <Text text="{Locnr}" id="text8" />
+                                                    <Text xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" id="text8_copy3" text="{Name1}" />
+                                                    <Text xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" text="{path : 'Datab', type : 'sap.ui.model.type.Date'}" wrapping="false" />
+                                                    <Text xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" text="{path : 'Datbi', type : 'sap.ui.model.type.Date'}" wrapping="false" />
                                                 </cells>
                                             </ColumnListItem>
                                         </items>
                                         <columns>
                                             <Column id="column0">
                                                 <header>
-                                                    <Button text="Sortiment" type="Transparent" press="sortTable($event,'Asort')"/>
+                                                    <Button text="Sortiment" type="Transparent" press="sortTable($event,'Asort')" />
                                                 </header>
                                             </Column>
                                             <Column id="column1">
                                                 <header>
-                                                    <Button text="Løpenr." type="Transparent" press="sortTable($event,'Lfdnr')"/>
+                                                    <Button text="Løpenr." type="Transparent" press="sortTable($event,'Lfdnr')" />
                                                 </header>
                                             </Column>
                                             <Column id="column2">
                                                 <header>
-                                                    <Button text="Butikk" type="Transparent" press="sortTable($event,'Locnr')"/>
+                                                    <Button text="Butikk" type="Transparent" press="sortTable($event,'Locnr')" />
                                                 </header>
                                             </Column>
                                             <Column>
                                                 <header>
-                                                    <Button text="Navn" type="Transparent" press="sortTable($event,'Name1')"/>
+                                                    <Button text="Navn" type="Transparent" press="sortTable($event,'Name1')" />
                                                 </header>
                                             </Column>
                                             <Column>
                                                 <header>
-                                                    <Button text="Fra-dato" type="Transparent" press="sortTable($event,'Datab')"/>
+                                                    <Button text="Fra-dato" type="Transparent" press="sortTable($event,'Datab')" />
                                                 </header>
                                             </Column>
                                             <Column>
                                                 <header>
-                                                    <Button text="Til-dato" type="Transparent" press="sortTable($event,'Datbi')"/>
+                                                    <Button text="Til-dato" type="Transparent" press="sortTable($event,'Datbi')" />
                                                 </header>
                                             </Column>
                                         </columns>
@@ -216,7 +231,7 @@
         <footer>
             <Bar>
                 <contentRight>
-                    <Button id="cancel" press="onTestClick" text="TEst" type="Transparent" visible="true"/>
+                    <Button id="cancel" press="onTestClick" text="TEst" type="Transparent" visible="true" />
                 </contentRight>
             </Bar>
         </footer>
@@ -226,54 +241,54 @@
         <content>
             <sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true" layout="ResponsiveGridLayout" id="form1" width="25rem">
                 <sap.ui.layout.form:content>
-                    <Label text="Sortiment" id="label4" required="true"/>
-                    <Input id="InputAsort" enableSuggestionsHighlighting="false" filterSuggests="false" showTableSuggestionValueHelp="false" placeholder="Sortiment" maxLength="10"/>
-                    <Label text="Beskrivelse" width="100%" id="label1" required="true"/>
-                    <Input id="InputName" placeholder="Beskrivelse til sortiment" maxLength="40"/>
-                    <Label text="Størrelse" width="100%" id="label2" required="true"/>
-                    <Select id="selectAssordimval1" forceSelection="false"/>
+                    <Label text="Sortiment" id="label4" required="true" />
+                    <Input id="InputAsort" enableSuggestionsHighlighting="false" filterSuggests="false" showTableSuggestionValueHelp="false" placeholder="Sortiment" maxLength="10" />
+                    <Label text="Beskrivelse" width="100%" id="label1" required="true" />
+                    <Input id="InputName" placeholder="Beskrivelse til sortiment" maxLength="40" />
+                    <Label text="Størrelse" width="100%" id="label2" required="true" />
+                    <Select id="selectAssordimval1" forceSelection="false" />
                 </sap.ui.layout.form:content>
             </sap.ui.layout.form:SimpleForm>
         </content>
         <beginButton>
-            <Button text="Avbryt" id="button24" press="closeDialog('dialogCreateAssortment')" icon="sap-icon://decline"/>
+            <Button text="Avbryt" id="button24" press="closeDialog('dialogCreateAssortment')" icon="sap-icon://decline" />
         </beginButton>
         <endButton>
-            <Button text="Lagre" id="button24_1668177811269" type="Accept" icon="sap-icon://save" press="createAssortment"/>
+            <Button text="Lagre" id="button24_1668177811269" type="Accept" icon="sap-icon://save" press="createAssortment" />
         </endButton>
     </Dialog>
 
     <ViewSettingsDialog id="SettingsdialogAssortment" confirm="handleConfirm">
         <sortItems>
-            <ViewSettingsItem text="Field 1" key="1" selected="true"/>
-            <ViewSettingsItem text="Field 2" key="2"/>
-            <ViewSettingsItem text="Field 3" key="3"/>
+            <ViewSettingsItem text="Field 1" key="1" selected="true" />
+            <ViewSettingsItem text="Field 2" key="2" />
+            <ViewSettingsItem text="Field 3" key="3" />
         </sortItems>
         <groupItems>
-            <ViewSettingsItem text="Field 1" key="1" selected="true"/>
-            <ViewSettingsItem text="Field 2" key="2"/>
-            <ViewSettingsItem text="Field 3" key="3"/>
+            <ViewSettingsItem text="Field 1" key="1" selected="true" />
+            <ViewSettingsItem text="Field 2" key="2" />
+            <ViewSettingsItem text="Field 3" key="3" />
         </groupItems>
         <filterItems>
             <ViewSettingsFilterItem text="Field1" key="1">
                 <items>
-                    <ViewSettingsItem text="Value A" key="1a"/>
-                    <ViewSettingsItem text="Value B" key="1b"/>
-                    <ViewSettingsItem text="Value C" key="1c"/>
+                    <ViewSettingsItem text="Value A" key="1a" />
+                    <ViewSettingsItem text="Value B" key="1b" />
+                    <ViewSettingsItem text="Value C" key="1c" />
                 </items>
             </ViewSettingsFilterItem>
             <ViewSettingsFilterItem text="Field2" key="2">
                 <items>
-                    <ViewSettingsItem text="Value A" key="2a"/>
-                    <ViewSettingsItem text="Value B" key="2b"/>
-                    <ViewSettingsItem text="Value C" key="2c"/>
+                    <ViewSettingsItem text="Value A" key="2a" />
+                    <ViewSettingsItem text="Value B" key="2b" />
+                    <ViewSettingsItem text="Value C" key="2c" />
                 </items>
             </ViewSettingsFilterItem>
             <ViewSettingsFilterItem text="Field3" key="3">
                 <items>
-                    <ViewSettingsItem text="Value A" key="3a"/>
-                    <ViewSettingsItem text="Value B" key="3b"/>
-                    <ViewSettingsItem text="Value C" key="3c"/>
+                    <ViewSettingsItem text="Value A" key="3a" />
+                    <ViewSettingsItem text="Value B" key="3b" />
+                    <ViewSettingsItem text="Value C" key="3c" />
                 </items>
             </ViewSettingsFilterItem>
         </filterItems>

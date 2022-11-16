@@ -36,52 +36,54 @@ function deleteAssortments() {
             if (oAction === sap.m.MessageBox.Action.YES) {
 
                 // Set chosen assortments to deleted (update)
-                let url = "/assortmentSet";
+                //let url = "/assortmentSet";
                 let payload = [];
+                let url
 
                 selectedAsortments.forEach(function (item) {
-                    payload.push({ Asort: item.getBindingContext().getProperty().Asort });
-                    payload = {
-                        Asort: item.getBindingContext().getProperty().Asort,
-                    }
+                    //  payload.push({ Asort: item.getBindingContext().getProperty().Asort });
+                    // payload = {
+                    //   Asort: item.getBindingContext().getProperty().Asort,
+                    //}
 
-                    payload = {
-                        Statu: "2"
-                    };
-                    url = "/assortmentSet('" + item.getBindingContext().getProperty().Asort + "')";
-
-
-                    getComponent("AssortmentTable").getModel().update(url, payload, {
-                        success: function (oData, response) {
-
-
-                            if (response.headers["sap-message"]) {
-                                var hdrMessage = JSON.parse(response.headers["sap-message"]);
-
-
-                                if (hdrMessage.severity === 'success') {
-                                    sap.m.MessageBox.success(
-                                        hdrMessage.message
-                                    );
-                                } else if (hdrMessage.severity === 'error') {
-                                    sap.m.MessageBox.error(
-                                        hdrMessage.message
-                                    );
-                                }
-                            }
-
-                        },
-                        error: function (Error) {
-                            sap.m.MessageBox.error(
-                                "En feil oppsto: " + Error.message
-                            );
-                        }
+                    payload.push({
+                        Statu: "2",
+                        Asort: item.getBindingContext().getProperty().Asort
                     });
+
+                    url = "/assortmentSet('" + item.getBindingContext().getProperty().Asort + "')";
 
                 });
 
+                url = "/assortmentSet?&batch"
 
 
+                getComponent("AssortmentTable").getModel().create(url, payload, {
+                    success: function (oData, response) {
+
+
+                        if (response.headers["sap-message"]) {
+                            var hdrMessage = JSON.parse(response.headers["sap-message"]);
+
+
+                            if (hdrMessage.severity === 'success') {
+                                sap.m.MessageBox.success(
+                                    hdrMessage.message
+                                );
+                            } else if (hdrMessage.severity === 'error') {
+                                sap.m.MessageBox.error(
+                                    hdrMessage.message
+                                );
+                            }
+                        }
+
+                    },
+                    error: function (Error) {
+                        sap.m.MessageBox.error(
+                            "En feil oppsto: " + Error.message
+                        );
+                    }
+                });
 
 
             }
